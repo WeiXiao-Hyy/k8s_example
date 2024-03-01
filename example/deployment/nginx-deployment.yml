@@ -23,3 +23,8 @@ spec:
       volumes:
         - name: nginx-vol
           emptyDir: {}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
