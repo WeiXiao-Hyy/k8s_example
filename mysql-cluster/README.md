@@ -2,7 +2,7 @@
 
 k8s 实现主192.168.0.101从架构,读写分离的MySQL集群
 
-![主从复制MySQL集群](./imgs/主从复制MySQL集群.png)
+![主从复制MySQL集群](imgs/主从复制MySQL集群.png)
 
 
 ## 需求
@@ -83,7 +83,7 @@ initContainers:
 
 流程图如下：
 
-![MySQL主从集群-拷贝数据.png](./imgs/MySQL主从集群-拷贝数据.png)
+![MySQL主从集群-拷贝数据.png](imgs/MySQL主从集群-拷贝数据.png)
 
 ### 从节点启动如何恢复数据
 
@@ -159,6 +159,6 @@ xtrabackup_binlog_info 文件存在则说明该节点为主节点
 
 流程图如下
 
-![MySQL主从集群从节点启动流程图](./imgs/MySQL主从集群从节点启动流程图.png)
+![MySQL主从集群从节点启动流程图](imgs/MySQL主从集群从节点启动流程图.png)
 
 等待MySQL服务启动操作：until MySQL：Select 1
