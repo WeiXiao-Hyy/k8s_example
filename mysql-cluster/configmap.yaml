@@ -5,11 +5,24 @@ metadata:
   labels:
     app: mysql
 data:
-  master.cnf: |
-    # Apply this config only on the master.
+  primary.cnf: |
+    # Apply this config only on the primary.
+    [mysql]
+    default-character-set=utf8mb4
     [mysqld]
     log-bin
-  slave.cnf: |
-    # Apply this config only on slaves.
+    character-set-server=utf8mb4
+    skip-grant-tables
+    [client]
+    default-character-set=utf8mb4
+
+  replica.cnf: |
+    # Apply this config only on replicas.
+    [mysql]
+    default-character-set=utf8mb4
     [mysqld]
-    super-read-only
+    super-read-only    
+    character-set-server=utf8mb4
+    skip-grant-tables
+    [client]
+    default-character-set=utf8mb4
