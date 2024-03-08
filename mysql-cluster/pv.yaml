@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local
   local:
-    path: ~/GitCode/xtrabackup/mysql/0
+    path: /Users/hujiale/GitCode/xtrabackup/mysql/0
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -19,7 +19,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - cp
+                - docker-desktop
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -34,7 +34,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local
   local:
-    path: ~/GitCode/xtrabackup/mysql/1
+    path: /Users/hujiale/GitCode/xtrabackup/mysql/1
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -42,7 +42,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - cp
+                - docker-desktop
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -57,7 +57,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local
   local:
-    path: ~/GitCode/xtrabackup/mysql/2
+    path: /Users/hujiale/GitCode/xtrabackup/mysql/2
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -65,4 +65,4 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - cp
+                - docker-desktop
