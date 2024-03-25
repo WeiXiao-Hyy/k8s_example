@@ -27,7 +27,7 @@ VXLAN 本质上是一种隧道封装技术，它使用 TCP/IP 协议栈的惯用
 
 docker0 处理转发的过程继续扮演二层交换机的角色。此时，docker0 网桥根据数据包的目的 MAC 地址，在它的 CAM 表里查到对应的端口为 veth42730c，然后把数据包发往该端口，以下是该过程的原理图。
 
-![宿主机上不同机器通过网桥进行通信的示意图](./imgs/宿主机上不同机器通过网桥进行通信的示意图.png)
+![宿主机上不同机器通过网桥进行通信的示意图](../imgs/宿主机上不同机器通过网桥进行通信的示意图.png)
 
 以下过程是通过 iptables 的 TRACE 功能查看数据包的传输过程。
 
@@ -43,7 +43,7 @@ Mar 18 20:39:20 ubun kernel: [1550900.298092] TRACE: filter:FORWARD:rule:1 IN=do
 
 根据上面的思路，需要在已有的宿主机网络上再通过软件构建一个可以把所有容器连通起来的虚拟网络即虚拟网络，原理如下图所示。
 
-![覆盖网络](./imgs/覆盖网络.png)
+![覆盖网络](../imgs/覆盖网络.png)
 
 ### flannel-UDP 后端实现
 
@@ -79,13 +79,13 @@ $ etcdctl ls /coreos.com/network/subnets
 
 每台宿主机上的 flanneld，都监听着一个 8285 端口，所以 flanneld 只要把 UDP 包发往 Node2 的 8285 端口即可。后续解析步骤同单机容器网络的实现原理。
 
-![Flanneld-UDP模式](./imgs/Flanneld-UDP模式.png)
+![Flanneld-UDP模式](../imgs/Flanneld-UDP模式.png)
 
 > UDP 模式下的性能问题
 
 由下图可以得知 UDP 模式下的 IP 包发出，需要经过 3 次用户态和内核态的切换，从而造成性能的损失。
 
-![UDP模式%20数据流向图](./imgs/Flannel-UDP数据流向.png)
+![UDP模式%20数据流向图](../imgs/Flannel-UDP数据流向.png)
 
 ### flannel-VXLAN 实现
 
@@ -93,13 +93,13 @@ VXLAN：虚拟可扩展局域网，其设计思想是，在现有的三层网络
 
 如下图是 VXLAN 的报文结构图。
 
-![https://thebyte.com.cn/content/chapter1/vxlan.html](./imgs/vxlan报文结构.png)
+![https://thebyte.com.cn/content/chapter1/vxlan.html](../imgs/vxlan报文结构.png)
 
 VXLAN 头里的 VNI，是 VTEP 设备识别某个数据帧是否应该归自己处理重要处理。
 
 > 需求: 容器 1 请求容器 4
 
-![VXLAN请求示意图](./imgs/VXLAN请求示意图.png)
+![VXLAN请求示意图](../imgs/VXLAN请求示意图.png)
 
 为了能将 Original Ethernet Frame 封装并发送到正确的宿主机上，VXLAN 需要找到这条“隧道”的出口。
 

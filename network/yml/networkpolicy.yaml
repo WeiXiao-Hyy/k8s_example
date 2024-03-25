@@ -1,0 +1,11 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-egress-test
+  namespace: "new-ns"
+spec:
+  podSelector:
+    matchLabels:
+      app: "deny-egress-test"
+  policyTypes:
+  - Egress
